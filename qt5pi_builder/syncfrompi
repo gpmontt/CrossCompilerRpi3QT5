@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+SYSROOT_SD= /mnt/raspbian/
+#PATHSYS='pi@192.168.178.53:'
+PATHSYS=$SYSROOT_SD
+
+rsync -avz $PATHSYS/lib sysroot
+rsync -avz $PATHSYS/usr/include sysroot/usr
+rsync -avz $PATHSYS/usr/lib sysroot/usr
+rsync -avz $PATHSYS/opt/vc sysroot/opt
