@@ -7,7 +7,7 @@ BASEDIR=$PWD
 #QMAKE_LFLAGS= -static -static-libgcc
 
 CLEAN=false
-SYSROOT=/mnt/raspbian
+SYSROOT=/mnt/rasp-pi-root
 #DEVICE="linux-rpi3-g++"
 DEVICE="linux-rasp-pi3-g++"
 
@@ -54,11 +54,6 @@ if [ ! -d /opt/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf ]; then
 fi
 COMPILER=/opt/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
 MAKE_OPTS="-j4"
-
-#if [ ! -d $BASEDIR/sysroot ]; then
-#	mkdir sysroot sysroot/usr sysroot/opt
-#  ./syncfrompi
-#fi
 
 
 if [ ! -f $BASEDIR/sysroot-relativelinks.py ]; then
