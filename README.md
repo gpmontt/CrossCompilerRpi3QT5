@@ -1,4 +1,8 @@
 # CrossCompilerRpi3QT5
 
-#2
-#3
+
+
+you need to indicated the PATH where is your SYSROOT into docker-compose.yml
+
+
+
