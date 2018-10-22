@@ -15,6 +15,10 @@ RUN apt-get update && apt-get install -y \
 
 # add a whatever volume 
 #VOLUME ["/opt"]
-#WORKDIR /opt/gcc7.3.0_qt59_rpi_static
+WORKDIR /opt/qt5pi_builder
+
+ENV name John Dow
+ENTRYPOINT ["/bin/bash", "-c", "echo Hello, $name"]
+RUN ls -lah
 
 
