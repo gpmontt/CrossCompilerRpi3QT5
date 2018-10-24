@@ -1,4 +1,6 @@
-#!/bin/sh -e
+#!/usr/bin/env bash
+
+set -e
 
 QT_VERSION=5.9
 QT_MODULES="qtxmlpatterns qtdeclarative qtserialport qtquickcontrols"
