@@ -1,8 +1,7 @@
 language: bash
 
-os:
-    - linux
+os: linux
 
-script: " echo "Skipped""
-
-
+script: 
+  - /bin/bash ./examplebash.sh
+  
