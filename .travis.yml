@@ -3,5 +3,5 @@ language: bash
 os: linux
 
 script: 
-  - bash ./examplebash.sh
+  - /bin/bash ./examplebash.sh
   
