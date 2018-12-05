@@ -3,5 +3,6 @@ language: bash
 os:
     - linux
 
-script:
-    - /bin/bash /qt5pi_builder/build
+script: " echo "Skipped""
+
+
