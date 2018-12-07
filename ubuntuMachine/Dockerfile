@@ -11,14 +11,18 @@ RUN apt-get update && apt-get install -y \
 	git \
 	cmake \
 	python \
-	vim
+	vim \
+ && rm -rf /var/lib/apt/lists/*
+
 
 # add a whatever volume 
-#VOLUME ["/opt"]
-WORKDIR /opt/qt5pi_builder
+VOLUME ["qt5pi_builder"]
+# WORKDIR used to change the working directory
+WORKDIR /tmp/qt5pi_builder
 
-ENV name John Dow
+ENV name velo  
 RUN ls -lah
+
 CMD ["/bin/sh", "-c", "echo Hello, $name"]
 
 
