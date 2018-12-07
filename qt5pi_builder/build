@@ -5,23 +5,43 @@ QT_VERSION=5.12
 QT_MODULES="qtxmlpatterns qtdeclarative qtserialport qtquickcontrols"
 GCC_VERSION=arm-linux-gnueabihf-
 BASEDIR=$PWD
-BASEREPO=velocity-docker-bikeman
 CLEAN=false
 
+# here you can use a frisch raspbian image or your personal sysroot
+OPTIONSYS=raspbian  
 DEVICE="linux-rasp-pi3-g++"
+COMPILER=/tmp/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
+SYSROOT=/tmp/mysysroot
 
-# get Sysroot
-echo "Get  Sysroot from xxxx"
-# create the tree structure
-
-#SYSROOT=$BASEREPO/mysysroot
-SYSROOT=/mnt/raspbian/sysroot
-
-if [ ! -d "$SYSROOT" ]; then
-	git clone git@github.com:tobimeu/velocity-docker-bikeman.git -b first_step_docker
-else
-	wget -c  https://downloads.raspberrypi.org/raspbian_lite_latest -o raspbian.zip
+# get compiler
+if [ ! -d /tmp/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf ]; then
+	wget -c https://releases.linaro.org/components/toolchain/binaries/7.3-2018.05/arm-linux-gnueabihf/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf.tar.xz -P /tmp
+	cd /tmp
+	unxz gcc-linaro-*.tar.xz
+	tar -xvf gcc-linaro-*.tar
+	rm gcc-linaro*.tar
+	cd $BASEDIR
 fi
+
+
+echo "Getting Sysroot from $OPTIONSYS"
+
+if [ "$OPTIONSYS" = "raspbian" ]; then
+	cd /tmp
+	wget -c https://downloads.raspberrypi.org/raspbian_latest -o raspbian.zip
+	if [ ! -d $SYSROOT ]; then
+		mkdir  -p $SYSROOT
+	fi
+
+	unzip raspbian.zip -d /tmp/mysysroot
+	cd $BASEDIR
+
+else
+	echo "whe are downloading a image for you"
+	#	git clone git@github.com:tobimeu/velocity-docker-bikeman.git -b first_step_docker
+fi
+
+
 
 
 USAGE="$(basename "$0") [-h] [-c] [-d device] -- install toolchain and build qt5 for raspberry pi, automated version of https://wiki.qt.io/RaspberryPi2EGLFS
@@ -60,9 +80,6 @@ done
 if [ "$CLEAN" = true ]; then
 	rm -rf $BASEDIR/qt5 $BASEDIR/qt5pi
 fi
-# get compiler
-
-COMPILER=/tmp/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
 MAKE_OPTS="-j4"
 
 if [ ! -f sysroot-relativelinks.py ]; then
@@ -72,8 +89,6 @@ if [ ! -f sysroot-relativelinks.py ]; then
 fi
 ./sysroot-relativelinks.py $SYSROOT
 
-
-echo $
 
 # build qtcore
 if [ ! -d qtbase ]; then
