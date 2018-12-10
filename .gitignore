@@ -41,3 +41,17 @@ target_wrapper.*
 
 # QtCreator CMake
 CMakeLists.txt.user*
+
+# DOCKERFILE
+
+qt5pibuilder/qt5
+qt5pibuilder/qt5pi 
+qt5pibuilder/qtbase
+qt5pibuilder/qtdeclarative
+qt5pibuilder/qtquickcontrols
+qt5pibuilder/qtserialport
+qt5pibuilder/qtxmlpatterns
+
+qt5pibuilder/sysroot/
+qt5pibuilder/sysroot.tar.gz
+qt5pibuilder/sysroot-relativelinks.py

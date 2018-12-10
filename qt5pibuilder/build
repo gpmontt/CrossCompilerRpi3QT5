@@ -1,22 +1,29 @@
 #!/bin/sh -e
 
+# show in wich line is run the code
 set -x
-QT_VERSION=5.12
+
+#Variable in the future
+QT_VERSION=5.9
+
+# module used to compile Stationpedelec, in the future add qtweb
 QT_MODULES="qtxmlpatterns qtdeclarative qtserialport qtquickcontrols"
+
 GCC_VERSION=arm-linux-gnueabihf-
 BASEDIR=$PWD
 CLEAN=false
 
 # here you can use a frisch raspbian image or your personal sysroot
-OPTIONSYS=raspbian  
+OPTIONSYS=mysys  
 DEVICE="linux-rasp-pi3-g++"
-COMPILER=/tmp/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
-SYSROOT=/tmp/mysysroot
+#DEVICE='linux-rasp-pi3-vc4-g++'
+COMPILER=/opt/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
+SYSROOT=/mnt/raspbian/rpiSysroot-2018-06-27-raspbian-stretch-lite-updated/sysroot
 
 # get compiler
-if [ ! -d /tmp/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf ]; then
-	wget -c https://releases.linaro.org/components/toolchain/binaries/7.3-2018.05/arm-linux-gnueabihf/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf.tar.xz -P /tmp
-	cd /tmp
+if [ ! -d /opt/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf ]; then
+	wget -c https://releases.linaro.org/components/toolchain/binaries/7.3-2018.05/arm-linux-gnueabihf/gcc-linaro-7.3.1-2018.05-x86_64_arm-linux-gnueabihf.tar.xz -P /opt
+	cd /opt
 	unxz gcc-linaro-*.tar.xz
 	tar -xvf gcc-linaro-*.tar
 	rm gcc-linaro*.tar
@@ -26,18 +33,22 @@ fi
 
 echo "Getting Sysroot from $OPTIONSYS"
 
+
+if [ ! -d $SYSROOT ]; then
+	sudo mkdir  -p $SYSROOT
+fi
+
+
+
 if [ "$OPTIONSYS" = "raspbian" ]; then
 	cd /tmp
 	wget -c https://downloads.raspberrypi.org/raspbian_latest -o raspbian.zip
-	if [ ! -d $SYSROOT ]; then
-		mkdir  -p $SYSROOT
-	fi
 
 	unzip raspbian.zip -d /tmp/mysysroot
 	cd $BASEDIR
 
 else
-	echo "whe are downloading a image for you"
+	echo "whe are working with a your root system"
 	#	git clone git@github.com:tobimeu/velocity-docker-bikeman.git -b first_step_docker
 fi
 
@@ -83,7 +94,7 @@ fi
 MAKE_OPTS="-j4"
 
 if [ ! -f sysroot-relativelinks.py ]; then
-	wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-#relativelinks.py
+	wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py
 	chmod +x sysroot-relativelinks.py
     ./sysroot-relativelinks.py $SYSROOT
 fi
@@ -100,7 +111,7 @@ cd qtbase
 if [ "$CLEAN" = true ]; then
 	git clean -d -f -x
 fi
-./configure -release -opengl es2 -device $DEVICE  -fontconfig -no-use-gold-linker \
+./configure -release -opengl es2 -device $DEVICE  -no-use-gold-linker \
 -device-option CROSS_COMPILE=$COMPILER \
 -sysroot $SYSROOT -opensource -confirm-license -make libs \
 -prefix /usr/local/qt5pi -extprefix $BASEDIR/qt5pi -hostprefix $BASEDIR/qt5 -v
