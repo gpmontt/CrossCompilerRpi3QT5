@@ -30,7 +30,7 @@ jobs:
             echo Running CrossCompiler
             set +e
             apt update && apt upgrade
-            apt install curl wget git cmake -y
+            apt install curl wget git cmake tar xz-utils sed awk -y
             pwd
             git clone https://github.com/gpmontt/CrossCompilerRpi3QT5
             cd CrossCompilerRpi3QT5
