@@ -1,19 +1,48 @@
 version: 2
+
+references:
+  workspace_root: &workspace_root
+    /tmp/workspace
+
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *workspace_root
+
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - run-prepare-image
+        #
+# TODO: prepare this one
+#      - clone-CrossCompiler
+#      - run-Crosscompiler  
+
+#------------------------------------------------------------------------------        
 jobs:
-  build:
+  run-prepare-image:
     docker:
-      - image: ubuntuMachine/
+      - image: ubuntu:18.04
+    enviroment:
     steps:
       - checkout
       - run:
           name: Greeting
-          command: echo Hello, world.
-      - run:
-          name: Print the Current Time
-          command: date
-      - run:
-          name: building Crosscompiler
           command: |
+            echo Hello, world.
             pwd 
+            git clone https://github.com/gpmontt/CrossCompilerRpi3QT5
+            cd CrossCompilerRpi3QT5
             cd qt5pibuilder
             bash ./build
+
+      - persist_to_workspace:
+        root: *workspace_root
+        paths:
+          - sysroot.tar.xz
+          - gcc-linaro-7.3.tar.xz
+          
+
+
+
