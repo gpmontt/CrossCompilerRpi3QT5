@@ -1,14 +1,6 @@
 version: 2
 
-references:
-  workspace_root: &workspace_root
-    /tmp/workspace
-
-  attach_workspace: &attach_workspace
-    attach_workspace:
-      at: *workspace_root
-
-
+#------------------------------------------------------------------------------        
 workflows:
   version: 2
   default:
@@ -18,31 +10,33 @@ workflows:
 # TODO: prepare this one
 #      - clone-CrossCompiler
 #      - run-Crosscompiler  
-
 #------------------------------------------------------------------------------        
 jobs:
+#------------------------------------------------------------------------------        
   run-prepare-image:
     docker:
       - image: ubuntu:18.04
     enviroment:
+    build:
+      branches:
+        ignore:
+          - develop
+          - /feature-.*/
     steps:
       - checkout
       - run:
           name: Greeting
           command: |
-            echo Hello, world.
-            pwd 
+            echo Running CrossCompiler
+            set +e
+            apt update && apt upgrade
+            apt install curl wget git cmake -y
+            pwd
             git clone https://github.com/gpmontt/CrossCompilerRpi3QT5
             cd CrossCompilerRpi3QT5
             cd qt5pibuilder
             bash ./build
 
-      - persist_to_workspace:
-        root: *workspace_root
-        paths:
-          - sysroot.tar.xz
-          - gcc-linaro-7.3.tar.xz
-          
 
 
 
