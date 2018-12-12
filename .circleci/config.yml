@@ -15,7 +15,7 @@ jobs:
 #------------------------------------------------------------------------------        
   run-prepare-image:
     docker:
-      - image: ubuntu:18.04
+      - image: gpmontt/dockertutorialinstallation
     enviroment:
     build:
       branches:
