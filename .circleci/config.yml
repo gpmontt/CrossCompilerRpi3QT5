@@ -30,7 +30,6 @@ jobs:
 
     enviroment:
     working_directory: ~/project_folder
-    
     build:
       branches:
         only: 
@@ -63,7 +62,6 @@ jobs:
           root: *workspace_root
           paths: 
             - qt5pibuilder
-            - /tmp/sysroot.tar.xz
              
 
 
