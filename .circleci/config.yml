@@ -74,7 +74,7 @@ jobs:
           name: "Publish Release on GitHub"
           command: |
             go get github.com/tcnksm/ghr
-            ls -liah /tmp 
+            ls -liah /tmp/workspace 
             echo "CIRCLE_TAG=${CIRCLE_TAG}"
             echo "GITHUB_TOKEN=${GITHUB_TOKEN}"
             echo "CIRCLE_PROJECT_USERNAME=${CIRCLE_PROJECT_USERNAME}"
@@ -82,4 +82,4 @@ jobs:
             echo "CIRCLE_SHA1=${CIRCLE_SHA1}"
             VERSION=file_$(date +%Y-%m-%d)
             echo "VERSION=${VERSION}"
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG  /tmp/sysroot.tar.xz
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG  /tmpi/workspace/sysroot.tar.xz
