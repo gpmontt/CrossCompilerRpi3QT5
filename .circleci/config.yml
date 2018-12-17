@@ -58,8 +58,7 @@ jobs:
             ls -lah
       - persist_to_workspace:
           root: *workspace_root
-          paths: 
-            - *.zip
+          paths: .             
              
 
 
