@@ -52,13 +52,14 @@ jobs:
             apt-get update && rm -rf /var/lib/apt/lists/*
             ls -lah
             cd qt5pibuilder
-            bash ./build
-            bash ./zipfile qt5
-            bash ./zipfile qt5pi 
+            #bash ./build
             ls -lah
+            echo print temporal file under  \/tmp
+            ls /tmp -lah
       - persist_to_workspace:
           root: *workspace_root
-          paths: .             
+          paths: 
+            - /root/project/qt5pibuilder          
              
 
 
@@ -79,7 +80,7 @@ jobs:
             echo "CIRCLE_SHA1=${CIRCLE_SHA1}"
             VERSION=file_$(date +%Y-%m-%d)
             echo "VERSION=${VERSION}"
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG /tmp/workspace/
+            #            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG /tmp/workspace/
 
             
   
