@@ -29,7 +29,7 @@ jobs:
       - image: gpmontt/dockertutorialinstallation
 
     enviroment:
-    working_directory: ~/circleci-demo-workflows
+    working_directory: ~/project_folder
     
     build:
       branches:
@@ -44,8 +44,6 @@ jobs:
 
     steps:
       - checkout
-      - attach_workspace:
-          at: ~/circleci-demo-workflows
       - run:
           name: building crosscompiler
           command: |
@@ -55,7 +53,7 @@ jobs:
             ls -lah
             #cd qt5pibuilder
             #bash ./build
-            #ls -lah
+            ls -lah /tmp
             #echo print temporal file under /tmp
       - persist_to_workspace:
           root: *workspace_root
@@ -82,7 +80,7 @@ jobs:
             echo "CIRCLE_SHA1=${CIRCLE_SHA1}"
             VERSION=file_$(date +%Y-%m-%d)
             echo "VERSION=${VERSION}"
-            #            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG /tmp/workspace/
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG  /tmp/examplebash.sh
 
             
   
