@@ -26,7 +26,6 @@ workflows:
 jobs:
 #------------------------------------------------------------------------------        
   run-prepare-image:
-    working_directory: ~/
     docker:
       - image: gpmontt/dockertutorialinstallation
 
@@ -41,7 +40,7 @@ jobs:
           - develop
           - /feature-.*/
 
-    resource_class: medium+
+    resource_class: medium
 
     steps:
       - checkout
@@ -60,8 +59,8 @@ jobs:
       - persist_to_workspace:
           root: *workspace_root
           paths: 
-            - qt5
-            - qt5pi
+            - *.zip
+             
 
 
   publish-github-release:
