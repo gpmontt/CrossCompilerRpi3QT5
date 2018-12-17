@@ -2,7 +2,7 @@ version: 2
 
 references:
   workspace_root: &workspace_root
-    /tmp
+    /tmp/workspace
     
   attach_workspace: &attach_workspace
     attach_workspace:
@@ -29,7 +29,6 @@ jobs:
       - image: gpmontt/dockertutorialinstallation
 
     enviroment:
-    working_directory: ~/project_folder
     build:
       branches:
         only: 
@@ -51,15 +50,18 @@ jobs:
             apt-get update && rm -rf /var/lib/apt/lists/*
             ls -lah
             export BASE=$(pwd)
+            mkdir -p /tmp/workspace
             cd /tmp
             pwd
             bash $BASE/qt5pibuilder/getsysroot
+            mv sysroot.tar.xz /tmp/workspace/
             #bash ./build
+            ls -lah /tmp/workspace
             #echo print temporal file under /tmp
       - persist_to_workspace:
           root: *workspace_root
           paths: 
-            - tmp/sysroot.tar.xz
+            - sysroot.tar.xz
              
 
 
