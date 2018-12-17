@@ -52,10 +52,10 @@ jobs:
             export BASE=$(pwd)
             mkdir -p /tmp/workspace
             pwd
-            cd $BASE/qt5pibuilder/
+            cd $BASE/qt5pibuilder
             bash ./build
             ls
-            zip -r /tmp/workspace/qt5pibuilder.zip $BASE/qt5pibuilder/qt5 $BASE/qt5pibuilder/qt5
+            zip -r /tmp/workspace/qt5pibuilder.zip $BASE/qt5pibuilder
             ls -lah /tmp/workspace
             #echo print temporal file under /tmp
       - persist_to_workspace:
