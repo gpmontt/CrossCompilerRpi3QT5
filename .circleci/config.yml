@@ -51,15 +51,19 @@ jobs:
             echo Running CrossCompiler
             apt-get update && rm -rf /var/lib/apt/lists/*
             ls -lah
-            #cd qt5pibuilder
+            BASE= $(pwd)
+            cd /tmp
+            bash $BASE/qt5pibuilder/getsysroot
+            
             #bash ./build
+            ls -lah /tmp/qt5pibuilder
             ls -lah /tmp
             #echo print temporal file under /tmp
       - persist_to_workspace:
           root: *workspace_root
           paths: 
             - qt5pibuilder
-            - examplebash.sh          
+            - /tmp/sysroot.tar.xz
              
 
 
@@ -80,7 +84,4 @@ jobs:
             echo "CIRCLE_SHA1=${CIRCLE_SHA1}"
             VERSION=file_$(date +%Y-%m-%d)
             echo "VERSION=${VERSION}"
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG  /tmp/examplebash.sh
-
-            
-  
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG  /tmp/sysroot.tar.xz
