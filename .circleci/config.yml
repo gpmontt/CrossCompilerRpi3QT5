@@ -6,7 +6,6 @@ references:
     /tmp/workspace
   
   attach_workspace:
-    attach_workspace:
       at: *workspace_root
 
 #------------------------------------------------------------------------------        
