@@ -52,15 +52,14 @@ jobs:
             ls -lah
             export BASE=$(pwd)
             cd /tmp
+            pwd
             bash $BASE/qt5pibuilder/getsysroot
             #bash ./build
-            ls -lah /tmp/qt5pibuilder/
-            ls -lah $BASE/
             #echo print temporal file under /tmp
       - persist_to_workspace:
           root: *workspace_root
           paths: 
-            - qt5pibuilder
+            - /tmp/sysroot.tar.xz
              
 
 
