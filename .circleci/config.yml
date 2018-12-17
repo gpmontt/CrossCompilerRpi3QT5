@@ -51,17 +51,17 @@ jobs:
             ls -lah
             export BASE=$(pwd)
             mkdir -p /tmp/workspace
-            cd /tmp
             pwd
-            bash $BASE/qt5pibuilder/getsysroot
-            mv sysroot.tar.xz /tmp/workspace/
-            #bash ./build
+            bash ./build
+            ls
+            zip -r /tmp/workspace/qt5pibuilder.zip $BASE/qt5pibuilder/qt5 $BASE/qt5pibuilder/qt5
             ls -lah /tmp/workspace
             #echo print temporal file under /tmp
       - persist_to_workspace:
           root: *workspace_root
           paths: 
             - sysroot.tar.xz
+            - qt5pibuilder.zip
              
 
 
@@ -83,4 +83,4 @@ jobs:
             echo "CIRCLE_SHA1=${CIRCLE_SHA1}"
             VERSION=file_$(date +%Y-%m-%d)
             echo "VERSION=${VERSION}"
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG  /tmp/workspace/sysroot.tar.xz
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG  /tmp/workspace/qt5pibulder.zip

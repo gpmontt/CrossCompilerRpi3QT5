@@ -8,7 +8,7 @@ QT_VERSION=5.9
 # here come wich gcc tool do you want to try
 GCC_VERSION=7.3
 ARCHCROSS=arm-linux-gnueabihf-
-PATH_GCC=/tmp
+PATH_GCC=/tmp/workspace
 
 # module used to compile Stationpedelec, in the future add qtweb
 QT_MODULES="qtxmlpatterns qtdeclarative qtserialport qtquickcontrols"
@@ -22,7 +22,7 @@ DEVICE="linux-rasp-pi3-g++"
 # DEVICE='linux-rasp-pi3-vc4-g++'
 #SYSROOT=/mnt/raspbian/rpiSysroot-2018-06-27-raspbian-stretch-lite-updated/sysroot
 SYSROOT=/tmp/sysroot
-COMPILER=/tmp/gcc-linaro-$GCC_VERSION.1-2018.05-x86_64_arm-linux-gnueabihf/bin/$ARCHCROSS
+COMPILER=$PATH_GCC/gcc-linaro-$GCC_VERSION.1-2018.05-x86_64_arm-linux-gnueabihf/bin/$ARCHCROSS
 
 MAKE_OPTS=-j$( nproc)
 
@@ -96,7 +96,7 @@ if [ "$OPTIONSYS" = "$SYSROOT" ]; then
   set SYSROOT=$PWD	
 	cd $BASEDIR
 else
-	cd /tmp
+	cd /tmp/workspace
 	bash $BASEDIR/getsysroot
 	tar -kx --xz -f sysroot.tar.xz
 	mv /tmp/rpiSys*/sysroot sysroot
@@ -153,3 +153,4 @@ for MODULE in $QT_MODULES; do
 	make install
 	cd ..
 done
+
