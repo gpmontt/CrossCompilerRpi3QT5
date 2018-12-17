@@ -1,11 +1,11 @@
 version: 2
 
-
 references:
   workspace_root: &workspace_root
     /tmp/workspace
-  
-  attach_workspace:
+    
+  attach_workspace: &attach_workspace
+    attach_workspace:
       at: *workspace_root
 
 #------------------------------------------------------------------------------        
@@ -15,8 +15,8 @@ workflows:
     jobs:
       - run-prepare-image
       - publish-github-release:
-        requires:
-          - run-prepare-image
+          requires:
+            - run-prepare-image
 
 
 
