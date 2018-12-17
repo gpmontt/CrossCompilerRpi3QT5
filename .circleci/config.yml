@@ -55,13 +55,13 @@ jobs:
             cd $BASE/qt5pibuilder
             bash ./build
             ls
-            zip -r /tmp/workspace/qt5pibuilder.zip $BASE/qt5pibuilder
+            zip -r /tmp/workspace/qt5pibuilder.zip $BASE/qt5pibuilder/qt5
+            zip -r /tmp/workspace/qt5pibuilder.zip $BASE/qt5pibuilder/qt5pi
             ls -lah /tmp/workspace
             #echo print temporal file under /tmp
       - persist_to_workspace:
           root: *workspace_root
           paths: 
-            - sysroot.tar.xz
             - qt5pibuilder.zip
              
 
@@ -76,7 +76,7 @@ jobs:
           command: |
             go get github.com/tcnksm/ghr
             ls -liah /tmp/workspace
-            export CIRCLE_TAG='v1' 
+            export CIRCLE_TAG='v1.1' 
             echo "CIRCLE_TAG=${CIRCLE_TAG}"
             echo "GITHUB_TOKEN=${GITHUB_TOKEN}"
             echo "CIRCLE_PROJECT_USERNAME=${CIRCLE_PROJECT_USERNAME}"
@@ -84,4 +84,4 @@ jobs:
             echo "CIRCLE_SHA1=${CIRCLE_SHA1}"
             VERSION=file_$(date +%Y-%m-%d)
             echo "VERSION=${VERSION}"
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG  /tmp/workspace/qt5pibulder.zip
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG  /tmp/workspace/qt5pibuilder.zip
