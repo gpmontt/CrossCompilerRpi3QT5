@@ -50,13 +50,12 @@ jobs:
             echo Running CrossCompiler
             apt-get update && rm -rf /var/lib/apt/lists/*
             ls -lah
-            BASE= $(pwd)
+            export BASE=$(pwd)
             cd /tmp
             bash $BASE/qt5pibuilder/getsysroot
-            
             #bash ./build
-            ls -lah /tmp/qt5pibuilder
-            ls -lah /tmp
+            ls -lah /tmp/qt5pibuilder/
+            ls -lah $BASE/
             #echo print temporal file under /tmp
       - persist_to_workspace:
           root: *workspace_root
