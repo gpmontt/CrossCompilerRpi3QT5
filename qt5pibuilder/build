@@ -4,7 +4,7 @@
 set -x
 
 #this giy need to be a variable in the future
-QT_VERSION=5.9.6
+QT_VERSION=5.9
 # here come wich gcc tool do you want to try
 GCC_VERSION=7.3
 ARCHCROSS=arm-linux-gnueabihf-
