@@ -31,7 +31,6 @@ jobs:
       - image: gpmontt/dockertutorialinstallation
 
     enviroment:
-    users: root
     build:
       branches:
         only: 
