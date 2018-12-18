@@ -2,8 +2,10 @@ version: 2
 
 references:
   workspace_root: &workspace_root
-    /tmp/workspace
-    
+    - /opt/gcc-7.3.1
+    - /mnt/raspbian 
+    - /tmp/workspace
+
   attach_workspace: &attach_workspace
     attach_workspace:
       at: *workspace_root
@@ -40,8 +42,9 @@ jobs:
           - /feature-.*/
 
     resource_class: medium
-
+    
     steps:
+      - *attach_workspace 
       - checkout
       - run:
           name: building crosscompiler
@@ -50,6 +53,8 @@ jobs:
             echo Running CrossCompiler
             apt-get update && rm -rf /var/lib/apt/lists/*
             mkdir -p /tmp/workspace
+            mkdir -p /mnt/raspbian
+            mkdir -p /opt/gcc-7.3.1
             cd qt5pibuilder
             bash ./build
             cd ..
