@@ -44,7 +44,6 @@ jobs:
     resource_class: medium
     
     steps:
-      - *attach_workspace 
       - checkout
       - run:
           name: building crosscompiler
@@ -55,7 +54,10 @@ jobs:
             mkdir -p /tmp/workspace
             mkdir -p /mnt/raspbian
             mkdir -p /opt/gcc-7.3.1
-            cd qt5pibuilder
+            mv /root/project/qt5pibuilder /opt/
+            ls
+            cd /opt/qt5pibuilder
+            ls
             bash ./build
             cd ..
             ls
