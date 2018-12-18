@@ -29,6 +29,7 @@ jobs:
       - image: gpmontt/dockertutorialinstallation
 
     enviroment:
+    users: root
     build:
       branches:
         only: 
@@ -48,15 +49,13 @@ jobs:
             set +e
             echo Running CrossCompiler
             apt-get update && rm -rf /var/lib/apt/lists/*
-            ls -lah
-            export BASE=$(pwd)
             mkdir -p /tmp/workspace
-            pwd
-            cd $BASE/qt5pibuilder
+            cd qt5pibuilder
             bash ./build
+            cd ..
             ls
-            zip -r /tmp/workspace/qt5pibuilder.zip $BASE/qt5pibuilder/qt5
-            zip -r /tmp/workspace/qt5pibuilder.zip $BASE/qt5pibuilder/qt5pi
+            zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5
+            zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5pi
             ls -lah /tmp/workspace
             #echo print temporal file under /tmp
       - persist_to_workspace:
