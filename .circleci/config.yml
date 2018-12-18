@@ -2,9 +2,7 @@ version: 2
 
 references:
   workspace_root: &workspace_root
-    - /opt/gcc-7.3.1
-    - /mnt/raspbian 
-    - /tmp/workspace
+     /tmp/workspace
 
   attach_workspace: &attach_workspace
     attach_workspace:
@@ -52,7 +50,6 @@ jobs:
             apt-get update && rm -rf /var/lib/apt/lists/*
             mkdir -p /tmp/workspace
             mkdir -p /mnt/raspbian
-            mkdir -p /opt/gcc-7.3.1
             mv /root/project/qt5pibuilder /opt/
             ls
             cd /opt/qt5pibuilder
