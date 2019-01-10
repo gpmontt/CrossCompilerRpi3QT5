@@ -26,7 +26,7 @@ jobs:
 #------------------------------------------------------------------------------        
   run-prepare-image:
     docker:
-      - image: gpmontt/dockertutorialinstallation
+      - image: earmadilo/xcompiler.qt59.gcc730
 
     enviroment:
     build:
