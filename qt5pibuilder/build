@@ -11,8 +11,8 @@ ARCHCROSS=arm-linux-gnueabihf-
 PATH_GCC=/tmp/workspace
 
 # module used to compile Stationpedelec, in the future add qtweb
-QT_MODULES="qtquickcontrols qtdeclarative qtserialport"
-#QT_MODULES="qtxmlpatterns qtdeclarative qtserialport qtquickcontrols"
+#QT_MODULES="qtquickcontrols qtdeclarative qtserialport"
+QT_MODULES="qtxmlpatterns qtdeclarative qtserialport qtquickcontrols"
 #QT_MODULES="qtserialport"
 
 BASEDIR=$PWD
