@@ -45,7 +45,7 @@ jobs:
           name: building crosscompiler
           command: |
             set +e
-            cd /tmp/workspace/
+            mkdir -p /tmp/workspace
             pwd
             echo Running CrossCompiler
             pwd
