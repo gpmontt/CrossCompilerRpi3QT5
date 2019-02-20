@@ -73,7 +73,7 @@ done
 
 # get compiler
 echo "GET COMPILER"
-if [ ! -d $PATH_GCC/linaro-toolchain-$GCC_VERSION ]; then
+if [ ! -d $PATH_GCC/gcc-linaro-$GCC_VERSION-2018.05-x86_64_arm-linux-gnueabihf]; then
 	cd /tmp
 	HTTP_LINARO="https://releases.linaro.org/components/toolchain/binaries/"
   #LINARO_TOOLCHAIN=$( curl -s $HTTP_LINARO  --list-only | sed -n  "/href/ s/.*href=['\"]\([^'\"]*\)['\"].*/\1/gp" | grep $GCC_VERSION )
@@ -86,7 +86,6 @@ if [ ! -d $PATH_GCC/linaro-toolchain-$GCC_VERSION ]; then
 fi
 
 
-echo "Getting Sysroot from googledrive"
 if [ "$OPTIONSYS" = "$SYSROOT" ]; then
 	#TODO: mount  new image and install dependency to create a new sysroot_2019
 	cd /tmp/workspace
@@ -95,6 +94,7 @@ if [ "$OPTIONSYS" = "$SYSROOT" ]; then
   set SYSROOT=$PWD	
 	cd $BASEDIR
 else
+	echo "Getting Sysroot from googledrive"
 	cd $BASEDIR
 	# maybe  depricate next year
 	#  curl -JLO  "https://www.dropbox.com/s/4nm8saa2snh8un4/rpiSysroot-2018-06-27-raspbian-stretch-lite-updated.tar.xz?dl=0"
@@ -149,4 +149,3 @@ done
 
 echo completed the work
 ls -lah
-printenv

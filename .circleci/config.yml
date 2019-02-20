@@ -49,15 +49,13 @@ jobs:
             echo Running CrossCompiler
             pwd
             mv /root/project/qt5pibuilder /opt/
-            pwd
             cd /opt/qt5pibuilder
-            ls
             bash ./build
             cd ..
             ls
-            zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5
-            zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5pi
-            ls -lah /tmp/workspace
+            zip -r /opt/qt5pibuilder.zip qt5pibuilder/qt5
+            zip -r /opt/qt5pibuilder.zip qt5pibuilder/qt5pi
+            ls -lah /
             #echo print temporal file under /tmp
       - persist_to_workspace:
           root: *workspace_root
