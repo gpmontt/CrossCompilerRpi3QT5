@@ -18,7 +18,6 @@ workflows:
           requires:
             - run-prepare-image
 
-
 # TODO: prepare this one
 #      - run-Crosscompiler  
 #------------------------------------------------------------------------------        
@@ -55,10 +54,9 @@ jobs:
             bash ./build
             cd ..
             ls
-            zip -r /opt/qt5pibuilder.zip qt5pibuilder/qt5
-            zip -r /opt/qt5pibuilder.zip qt5pibuilder/qt5pi
-            mv /opt/qt5pibuilder.zip /tmp/workspace
-            ls -lah /tmp/
+            zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5
+            zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5pi
+            ls -lah /tmp/workspace
             #echo print temporal file under /tmp
       - persist_to_workspace:
           root: *workspace_root
