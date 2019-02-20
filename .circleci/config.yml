@@ -47,11 +47,9 @@ jobs:
           command: |
             set +e
             echo Running CrossCompiler
-            apt-get update && rm -rf /var/lib/apt/lists/*
-            mkdir -p /tmp/workspace
-            mkdir -p /mnt/raspbian
+            pwd
             mv /root/project/qt5pibuilder /opt/
-            ls
+            pwd
             cd /opt/qt5pibuilder
             ls
             bash ./build
