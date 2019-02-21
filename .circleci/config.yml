@@ -51,7 +51,7 @@ jobs:
             pwd
             mv /root/project/qt5pibuilder /opt/
             cd /opt/qt5pibuilder
-            bash ./build
+            bash ./build --clean
             cd ..
             ls
             zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5
