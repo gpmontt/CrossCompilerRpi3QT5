@@ -4,7 +4,7 @@
 # TravisCI: [![Build Status](https://travis-ci.com/gpmontt/CrossCompilerRpi3QT5.svg?branch=master)](https://travis-ci.com/gpmontt/CrossCompilerRpi3QT5)
 
 
-# CircleCI: [![CircleCI Build Status](https://circleci.com/gh/gpmontt/CrossCompilerRpi3QT5.svg?style=shield)](https://circleci.com/gh/gpmontt/CrossCompilerRpi3QT5r)
+# CircleCI: [![CircleCI Build Status](https://circleci.com/gh/gpmontt/CrossCompilerRpi3QT5.svg?style=shield)](https://circleci.com/gh/gpmontt/CrossCompilerRpi3QT5)
 
 
 # INSTRUCTIONS
@@ -19,6 +19,5 @@ We are using the version [Linaro GCC 7.3-2018.05](https://releases.linaro.org/co
 
 The script produces as result 2 folders with the names qt5 and qt5pi in format zip. 
 and the sysroot is available [here](https://www.dropbox.com/s/4nm8saa2snh8un4/rpiSysroot-2018-06-27-raspbian-stretch-lite-updated.tar.xz?dl=0)
-
 
 If you want to try with another toolchain, sysroot or another modules for qt5, please feel free to play and contribute and just do it! :D
