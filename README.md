@@ -1,23 +1,15 @@
-# CrossCompilerRpi3QT5
+# Cross-compile-toolchain 
 
+To run this image, uses:
+'''
+docker run -it {ThePreviousName} /bin/bash
+'''
 
-# TravisCI: [![Build Status](https://travis-ci.com/gpmontt/CrossCompilerRpi3QT5.svg?branch=master)](https://travis-ci.com/gpmontt/CrossCompilerRpi3QT5)
+# Step to Docker Hub
 
-
-# CircleCI: [![CircleCI Build Status](https://circleci.com/gh/gpmontt/CrossCompilerRpi3QT5.svg?style=shield)](https://circleci.com/gh/gpmontt/CrossCompilerRpi3QT5)
-
-
-# INSTRUCTIONS
-
-This project tries to generate the workflow to build a crosscompiler for the Raspberrypi3 together with the qt5 library.
-For this purpose are necessary:
-- sysroot
-- toolchain compatible with the raspberry
-- qtbase Source 
-
-We are using the version [Linaro GCC 7.3-2018.05](https://releases.linaro.org/components/toolchain/binaries/latest-7/). You can try another version from gcc-linaro if you want. 
-
-The script produces as result 2 folders with the names qt5 and qt5pi in format zip. 
-and the sysroot is available [here](https://www.dropbox.com/s/4nm8saa2snh8un4/rpiSysroot-2018-06-27-raspbian-stretch-lite-updated.tar.xz?dl=0)
-
-If you want to try with another toolchain, sysroot or another modules for qt5, please feel free to play and contribute and just do it! :D
+* step 1: create account on [hub.docker.com]
+* step 2: create a new repository on GitHub
+* step 3: create a Dockerfile on your repo, add, commit  push
+* step 4: on your machine use `docker built -t {NAME_ORG}/{NAME_YOUR_REPO} .`
+* step 5: if the image was successful, now you can push your image on the DockerHub
+* step 6: It is  necessary create an account for the organization ! 
