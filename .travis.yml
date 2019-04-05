@@ -1,7 +1,18 @@
-language: bash
+sudo: required
+language: c++
+service:
+  - docker
+
+jobs:
 
 os: linux
 
+env: 
+  global:
+  matrix:
+    - QTRPI_VERSION=qt5.9
+    - QTRPI_VERSION=qt5.qt10
+    - QTRPI_VERSION=qt5.13
 script: 
   - /bin/bash ./examplebash.sh
   

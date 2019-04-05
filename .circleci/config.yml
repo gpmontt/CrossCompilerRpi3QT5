@@ -83,4 +83,4 @@ jobs:
             echo "CIRCLE_SHA1=${CIRCLE_SHA1}"
             VERSION=file_$(date +%Y-%m-%d)
             echo "VERSION=${VERSION}"
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace $VERSION$TAG  /tmp/workspace/qt5pibuilder.zip
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete -replace ${VERSION}  /tmp/workspace/qt5pibuilder.zip
