@@ -48,12 +48,10 @@ jobs:
             mkdir -p /tmp/workspace
             pwd
             echo Running CrossCompiler
-            pwd
             mv /root/project/qt5pibuilder /opt/
             cd /opt/qt5pibuilder
-            bash ./build --clean
+            bash ./build.sh --clean
             cd ..
-            ls
             zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5
             zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5pi
             ls -lah /tmp/workspace
@@ -70,6 +68,7 @@ jobs:
       - image: circleci/golang:1.8   
     steps:
       - *attach_workspace
+      - 
       - run:
           name: "Publish Release on GitHub"
           command: |

@@ -2,17 +2,21 @@ sudo: required
 language: c++
 service:
   - docker
-
-jobs:
+before_install:
+  - docker pull velocitymonb/xcompiler-qt5-ubuntu-raspberrypi
 
 os: linux
 
 env: 
-  global:
+osglobal:
   matrix:
     - QTRPI_VERSION=qt5.9
     - QTRPI_VERSION=qt5.qt10
     - QTRPI_VERSION=qt5.13
-script: 
-  - /bin/bash ./examplebash.sh
-  
+jobs:
+  include:
+    - stage: build
+    - script:  | 
+        printenv
+        ls -la 
+        /bin/bash -c examplebash.sh
