@@ -50,7 +50,7 @@ jobs:
             echo Running CrossCompiler
             mv /root/project/qt5pibuilder /opt/
             cd /opt/qt5pibuilder
-            bash ./build.sh --clean
+            bash ./build --clean
             cd ..
             zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5
             zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5pi
