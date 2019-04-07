@@ -2,7 +2,7 @@ version: 2
 
 references:
   workspace_root: &workspace_root
-     /tmp/workspace
+    /tmp/workspace
 
   attach_workspace: &attach_workspace
     attach_workspace:
@@ -40,6 +40,8 @@ jobs:
     resource_class: medium
     
     steps:
+      - save_cache: 
+          key: 
       - checkout
       - run:
           name: building crosscompiler
@@ -50,7 +52,7 @@ jobs:
             echo Running CrossCompiler
             mv /root/project/qt5pibuilder /opt/
             cd /opt/qt5pibuilder
-            bash ./build --clean
+            bash ./build.sh --clean
             cd ..
             zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5
             zip -r /tmp/workspace/qt5pibuilder.zip qt5pibuilder/qt5pi
@@ -60,15 +62,12 @@ jobs:
           root: *workspace_root
           paths: 
             - qt5pibuilder.zip
-             
-
 
   publish-github-release:
     docker:
       - image: circleci/golang:1.8   
     steps:
       - *attach_workspace
-      - 
       - run:
           name: "Publish Release on GitHub"
           command: |
