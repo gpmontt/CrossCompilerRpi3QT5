@@ -1,6 +1,8 @@
-# TravisCI: [![Build Status](https://travis-ci.com/gpmontt/cross-compile-toolchain.svg?branch=master)](https://travis-ci.com/gpmontt/cross-compile-toolchain)
+TravisCI: [![Build Status](https://travis-ci.com/gpmontt/cross-compile-toolchain.svg?branch=master)](https://travis-ci.com/gpmontt/cross-compile-toolchain)  
 
-# CircleCI: [![CircleCI Build Status](https://circleci.com/gh/velocitymob/cross-compile-toolchain.svg?style=shield)](https://circleci.com/gh/velocitymob/cross-compile-toolchain)
+[![CircleCI](https://circleci.com/gh/velocitymob/cross-compile-toolchain/tree/master.svg?style=svg)](https://circleci.com/gh/velocitymob/cross-compile-toolchain/tree/master)
+
+CircleCI: [![CircleCI Build Status](https://circleci.com/gh/velocitymob/cross-compile-toolchain.svg?style=shield)](https://circleci.com/gh/velocitymob/cross-compile-toolchain)
 
 # Cross-compile-toolchain 
 
