@@ -28,11 +28,6 @@ jobs:
       - image: velocitymob/xcompiler-qt5-ubuntu-raspberrypi
 
     enviroment:
-       CLEAN = TRUE 
-       DEVICE
-       GCC_VERSION
-       SYSROOT
-       QT_VERSION = 5.12
     build:
       branches:
         only: 
@@ -43,16 +38,15 @@ jobs:
           - /feature-.*/
 
     resource_class: medium
-    
     steps:
+      - checkout
       - setup_remote_docker:
-        docker_layer_caching: true
+          docker_layer_caching: true
       #- restore_cache:
       #  keys: dependency-
       #  version prepaid
       #- save_cache:
       #  paths: /mnt/raspbian/sysroot  
-      - checkout
       - run:
           name: building crosscompiler
           command: |
