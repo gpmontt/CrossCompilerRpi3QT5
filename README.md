@@ -2,7 +2,7 @@
 # Cross-compile-toolchain  
 
 
-This project tries to generate the workflow to build a cross-compiler for the Raspberrypi3 together with the qt5 library.
+This project tries to generate the workflow to build a cross-compiler for the Raspberry-pi3 together with the qt5 library.
 For this purpose are necessary:
 - sysroot
 - toolchain compatible with the raspberry
