@@ -52,7 +52,7 @@ jobs:
           command: |
             set +e
             mkdir -p /tmp/workspace
-            pwd
+            printenv 
             echo Running CrossCompiler
             mv /root/project/qt5pibuilder /opt/
             cd /opt/qt5pibuilder
