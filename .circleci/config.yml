@@ -68,7 +68,7 @@ jobs:
 
   publish-github-release:
     docker:
-      - image: circleci/golang:1.8   
+      - image: circleci/golang:1.10   
     steps:
       - *attach_workspace
       - run:
@@ -76,7 +76,7 @@ jobs:
           command: |
             go get github.com/tcnksm/ghr
             ls -liah /tmp/workspace
-            export CIRCLE_TAG='v1.1' 
+            export CIRCLE_TAG='v1.2' 
             echo "CIRCLE_TAG=${CIRCLE_TAG}"
             echo "GITHUB_TOKEN=${GITHUB_TOKEN}"
             echo "CIRCLE_PROJECT_USERNAME=${CIRCLE_PROJECT_USERNAME}"
