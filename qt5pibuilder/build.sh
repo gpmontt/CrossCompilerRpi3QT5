@@ -13,12 +13,12 @@ unset QT_VERSION GCC_VERSION PATH_GCC
 
 # module used to compile Stationpedelec, in the future add qtweb
 ARCHCROSS=arm-linux-gnueabihf-
-QT_MODULES="qtxmlpatterns qtdeclarative qtserialport qtquickcontrols"
+QT_MODULES="qtxmlpatterns qtdeclarative qtserialport qtquickcontrols qtconnectivity"
 BASEDIR=$PWD
 CLEAN=true
-# here you can use a frisch raspbian image or your personal sysroot
 DEVICE="linux-rasp-pi3-g++"
 # DEVICE='linux-rasp-pi3-vc4-g++'
+# here you can use a frisch raspbian image or your personal sysroot
 SYSROOT=/mnt/raspbian/sysroot
 COMPILER=${PATH_GCC}/gcc-linaro-${GCC_VERSION}-2018.05-x86_64_arm-linux-gnueabihf/bin/${ARCHCROSS}
 MAKE_OPTS=-j$( nproc)
